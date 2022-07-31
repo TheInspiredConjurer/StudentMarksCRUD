@@ -1,0 +1,77 @@
+{% extends 'mainApp/base.html' %}
+
+{% block title %}Django Crud Home -  All Student List{% endblock title %}
+
+{% block body %}
+
+<h2 class="col">All Student Info</h2>
+
+<div class="container">
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    {% if student_list %}
+
+    <div class="col">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Student ID</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in student_list %}
+          <tr>
+            <th scope="row">{{item.pk}}</th>
+            <td>{{item.student_name}}</td>
+            <td>{{item.department_name}}</td>
+            <td colspan="2">
+              <table>
+                <tr>
+                  <td>
+                    <a class="btn btn-primary" href="{% url 'UpdateStudent' item.pk %}" role="button">Update student details</a>
+                  </td>
+            </td>
+            <td>
+              <a class="btn btn-danger" href="{% url 'DeleteStudent' item.pk %}" role="button">Delete student</a>
+            </td>
+            </td>
+            </td>
+            <td>
+              <a class="btn btn-secondary" href="{% url 'AddMarksForSingleStudent' item.pk %}" role="button">Add Mark</a>
+            </td>
+            </td>
+            </td>
+          </tr>
+      </table>
+      </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+
+
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+    <!-- /.col-lg-4 -->
+
+    {% else %}
+    No Info Found!
+    {% endif %}
+  </div>
+</div>
+<!-- /.row -->
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <a href="{% url 'CreateNewStudent' %}" class="btn btn-success">Create New Student</a>
+    </div>
+  </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,25 @@
+{% extends 'mainApp/base.html' %}
+
+{% block title %}Delete Student{% endblock title %}
+
+{% block body %}
+
+<h2 class="col">Delete Marks Form</h2>
+
+<div class="container">
+  <div class="row">
+
+    <form action="{% url 'DeleteMarksForSingleStudent' marks.pk %}" method="POST">
+      {% csrf_token %}
+      <p>Are you sure you want to delete "{{ marks }}"?</p>
+      <div>
+        <button type="submit" class="btn btn-success">Confirm</button>
+        <a href="{% url 'StudentHome' %}" class="btn btn-default">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock body %}
